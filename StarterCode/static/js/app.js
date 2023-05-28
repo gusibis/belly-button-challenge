@@ -28,7 +28,7 @@ d3.json(url).then(function(data) {
         xval = s.sample_values.slice(0, 10).reverse()
         yval =  s.otu_ids.slice(0, 10).map(val=>"OTU " + val).reverse()
         labels = s.otu_labels.slice(0, 10).reverse()
-        // alert(xval);
+         // console.log(xval);
         // populate sample metadata - demorgraphin info.
         for (const [key, value] of Object.entries(obj)) {
             let addDemoData = d3.select('.panel-body').append('h5');
@@ -46,12 +46,12 @@ function optionChanged(){
     selectionMade = document.getElementById("selDataset").value;
     document.getElementById("sample-metadata").style.backgroundColor = "#eaeded"
     console.log("SELECTED SUBJECT ID: " + selectionMade + " -- HANDLING WITH: d3.select('#selDataset').on('change', function() ") // 
-}
+};
 
 function createBarChart(xval, yval, labels) {
   let layout = {
     title: " Top 10 OTUs",
-    margin: { t: 30, l: 150 }
+    margin: { t: 30, l: 150 },
   }
   var plotData = [{
     x:  xval,
@@ -60,11 +60,11 @@ function createBarChart(xval, yval, labels) {
     name: "Belly Flora",
     type: "bar",
     orientation: "h",
-    marker: { color: "cyan-blue" }
+    marker: { color: "cyan-blue" },
 }]
 Plotly.newPlot("bar", plotData, layout) 
     
-}
+};
 
 function createBubbleChart(xval, yval, labels, otuIds) {
   var layoutBubble = { 
@@ -83,5 +83,5 @@ function createBubbleChart(xval, yval, labels, otuIds) {
     }];
     Plotly.newPlot("bubble", dataBubble, layoutBubble);
     
-}
+};
 
