@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Bellybutton Biodiversity</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 jumbotron text-center">
+        <h1>Belly Button Biodiversity Dashboard</h1>
+        <p>Use the interactive charts below to explore the dataset</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <div class="well">
+          <h5>Test Subject ID No.:</h5>
+          <select id="selDataset" onchange="optionChanged(this.value)"></select>
+        </div>
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Demographic Info</h3>
+          </div>
+          <div id="sample-metadata" class="panel-body"></div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div id="bar"></div>
+      </div>
+      <div class="col-md-5">
+        <div id="gauge"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="bubble"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="./static/js/app.js"></script>
+  <!-- <script src="./static/js/bonus.js"></script>   -->
+  <!-- NO BONUS ALL IN THE app.js file -->
+  
+</body>
+<style>
+  @keyframes vibrate {
+  1% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  99% { transform: translate(0); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  20% { transform: translate(-2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  90% { transform: translate(0); }
+  90% { transform: translate(-2px, 2px); }
+}
+
+@keyframes multicolor {
+    0% {
+        background-color:   #f1f0f2 ;
+     } 
+    58% {
+      background-color:  #f3f0ef ;
+    }
+    30% {
+      background-color: #e1f3f3;
+    } 
+    45% {
+      background-color:  #f0f7ee ;
+    } 
+     60% {
+      background-color:   #f4f6f6 ;
+    }
+    62% {
+      background-color:  #fbf9f3;
+    }
+    61% {
+      background-color:  #f4f1ee;
+    }
+    100% {
+      background-color:   #f8f3fc ;
+    }
+}
+  #bar {
+    animation: vibrate 8s infinite;
+  }
+  #sample-metadata {
+    animation: multicolor 7s infinite;
+
+  }
+</style>
+
+</html>
