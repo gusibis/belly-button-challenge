@@ -48,8 +48,55 @@
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script src="./static/js/app.js"></script>
-  <script src="./static/js/bonus.js"></script>
+  <!-- <script src="./static/js/bonus.js"></script>   -->
+  <!-- NO BONUS ALL IN THE app.js file -->
   
 </body>
+<style>
+  @keyframes vibrate {
+  1% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  99% { transform: translate(0); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  20% { transform: translate(-2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  90% { transform: translate(0); }
+}
+
+@keyframes multicolor {
+    0% {
+        background-color:   #e1f3f3 ;
+     } 
+    58% {
+      background-color:  #f3f0ef ;
+    }
+    30% {
+      background-color: #f1f0f2;
+    } 
+    45% {
+      background-color:  #f0f7ee ;
+    } 
+     60% {
+      background-color:   #f4f6f6 ;
+    }
+    62% {
+      background-color:  #fbf9f3;
+    }
+    61% {
+      background-color:  #f4f1ee;
+    }
+    100% {
+      background-color:   #f8f3fc ;
+    }
+}
+  #bar {
+    animation: vibrate 8s infinite;
+  }
+  #sample-metadata {
+    animation: multicolor 7s infinite;
+
+  }
+</style>
 
 </html>
