@@ -25,21 +25,19 @@ d3.json(url).then(function(data) {
         var s = sampleValuesFiltered[0];
         var otuIds = s.otu_ids;
         var sampplevalues = s.sample_values;
+        washingFrequency = obj["wfreq"] ;
         xval = s.sample_values.slice(0, 10).reverse()
         yval =  s.otu_ids.slice(0, 10).map(val=>"OTU " + val).reverse()
         labels = s.otu_labels.slice(0, 10).reverse()
          // console.log(xval);
-        // populate sample metadata - demorgraphin info.
         for (const [key, value] of Object.entries(obj)) {
             let addDemoData = d3.select('.panel-body').append('h5');
             addDemoData.text(`${key}:  ${value}`)
           }
         createBarChart(xval, yval, labels);
-        createBubbleChart(xval, yval, labels, otuIds);
-
+        createBubbleChart(sampplevalues, labels, otuIds, "Belly Button Sample Values");
+        createGaugeChart(washingFrequency);
     });
-    
-
 });
   
 function optionChanged(){
@@ -61,27 +59,53 @@ function createBarChart(xval, yval, labels) {
     type: "bar",
     orientation: "h",
     marker: { color: "cyan-blue" },
-}]
-Plotly.newPlot("bar", plotData, layout) 
-    
+  }]
+  Plotly.newPlot("bar", plotData, layout);
 };
 
-function createBubbleChart(xval, yval, labels, otuIds) {
+function createBubbleChart(yval, labels, otuIds, name ) {
   var layoutBubble = { 
-    title: "Belly Button Biodiversity",
+    title: name,
     xaxis: { title: "OTU ID" }, 
   };
-    var dataBubble = [{
-      x: xval, 
-      y: yval, 
-      text: labels, 
-      mode: "markers", 
-      marker: { 
-        size: xval, 
-        color: "cyan-blue",
-      } 
-    }];
-    Plotly.newPlot("bubble", dataBubble, layoutBubble);
-    
+  var dataBubble = [{
+    x: otuIds, 
+    y: yval, 
+    text: labels, 
+    mode: "markers", 
+    marker: { 
+      size: yval, 
+      color: otuIds,
+    } 
+  }];
+  Plotly.newPlot("bubble", dataBubble, layoutBubble);  
 };
 
+function createGaugeChart(washingFrequency){
+  var data = [
+    {
+      value: washingFrequency,
+      title: { text: "<b>Belly Button Washing Frequency</b><br>Scrubs per Week" },
+      type: "indicator",
+      mode: "gauge+number",
+      gauge: {
+        axis: {
+           range: [0, 9],
+         },
+        steps: [
+          { range: [0, 1], color: "#ffffe6"},
+          { range: [1, 2], color: "#eeffe6"},
+          { range: [2, 3], color: "#f7ffe6"},
+          { range: [3, 4], color: "#e6ffe6"},
+          { range: [4, 5], color: "#f2ffe6"},
+          { range: [5, 6], color: "#eeffcc"},
+          { range: [6, 7], color: "#eeffcc"},
+          { range: [7, 8], color: "#eeffe6"},
+          { range: [8, 9], color: "#b3ffb3"},
+        ],
+      }
+    }
+  ];
+  
+  Plotly.newPlot('gauge', data);
+}
