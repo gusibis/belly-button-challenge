@@ -23,6 +23,6 @@ Complete the following steps:
 
 6. Update all the plots when a new sample is selected. Additionally, you are welcome to create any layout that you would like for your dashboard
 
-All the functions exist in app.js. <br>
-site link:
+All the functions added to app.js. <br>
+GitHub pages link:<br>
 https://gusibis.github.io/belly-button-challenge/ 
